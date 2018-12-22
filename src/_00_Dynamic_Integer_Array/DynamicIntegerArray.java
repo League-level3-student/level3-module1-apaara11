@@ -21,7 +21,7 @@ public class DynamicIntegerArray {
 		//B. set the last element of your new array to 
 		//   the value passed into the method
 		
-		a[array.length-1]= v;
+		a[array.length]= v;
 		
 		//C. iterate through the member array and 
 		//   copy every element from the member array 
@@ -60,12 +60,21 @@ public class DynamicIntegerArray {
 		int[] b = new int[array.length+1];
 		
 		//B. Make a for loop that iterates through the new array
-		for(int i= 0; i< array.length; i++) {
+		for(int i= 0; i< b.length; i++) {
 			
+		if(i<location) {
+			b[i]= array[i];
 		}
-
-			//C. if i is less than location:
-		    //		set the element at i of the new array to the element at i of the member array
+		
+		else if(i>location) {
+			b[i]= array[i-1];
+		}
+		
+		else {
+			b[i]= v;
+		}
+		}
+		//C. if i is less than location: set the element at i of the new array to the element at i of the member array
 			
 			//D. else if i is greater than location:
 		    //		set the element at i of the new array to the i - 1 element of the member array
@@ -74,7 +83,9 @@ public class DynamicIntegerArray {
 		
 		
 		//F. set the member array equal to the new array
+		array = b;
 	
+		
 	}
 	
 	//8. Run the tests again and check your progress
@@ -83,8 +94,25 @@ public class DynamicIntegerArray {
 	public void remove(int location) {
 		//A. create a new array that is one element smaller than the member array
 		
-		//B. make a for loop to iterate through the member array
+		int[] removeArray = new int[array.length-1];
 		
+		//B. make a for loop to iterate through the member array
+		for(int i=0; i<array.length; i++) {
+			//array[i];
+			
+			if(i<location) {
+				removeArray[i]= array[i];
+			}
+			
+			else if(i>location) {
+				removeArray[i-1]= array[i];
+			}
+			
+			else {
+				
+			}
+			
+		}
 			//C. if i  is less than location
 			//		set the element at i of the new array to the element at i of the member array
 			
@@ -94,18 +122,23 @@ public class DynamicIntegerArray {
 			//E. else, continue;
 			
 		//F. set the member array equal to the new array
+		array = removeArray;
+		
 	}
 	
 	//10. Run the tests again the see if you are correct so far
 	
 	//11. Complete the size method so that it returns the length of the member array.
 	public int size() {
-		return 0;
+		return array.length;
 	}
 	
 	//12. Complete the clear array so that it sets the member array 
 	//    equal to a new integer array of size 0
 	public void clear() {
+		int[] clearArray = new int[0];
+		array = clearArray;
+		
 	}
 	
 	//13. Run the test again to see if you are finished.

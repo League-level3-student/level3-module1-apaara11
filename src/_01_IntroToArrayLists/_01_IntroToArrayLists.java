@@ -5,12 +5,21 @@ import java.util.ArrayList;
 public class _01_IntroToArrayLists {
 	public static void main(String[] args) {
 		//1. Create an array list of Strings
+		
+ArrayList<String> names = new ArrayList<>();
 		//   Don't forget to import the ArrayList class
 
 		//2. Add five Strings to your list
-		
+		names.add("Mink");
+		names.add("Vandana");
+		names.add("Par Par");
+		names.add("Bani");
+		names.add("Armaanu");
 		//3. Print all the Strings using a standard for-loop
-		
+		for(int i = 0; i<names.size(); i++) {
+			String s = names.get(i);
+			System.out.println("String at element " + i + " " + s);
+		}
 		
 		//4. Print all the Strings using a for-each loop
 		
