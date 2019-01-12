@@ -34,8 +34,11 @@ ArrayList<String> names = new ArrayList<>();
 			System.out.println(names.get(i));
 		}
 		//7. Print only the Strings that have the letter 'n' in them.
-		for(int i = 0; i<names.size(); i++) {
-			
+		
+		for(String s: names) {
+			if(s.contains("n")) {
+				System.out.println(s);
+			}
 				
 			}
 		}
