@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 public class _02_GuestBook implements ActionListener{
 
-	String[] names = new String[4];
+	ArrayList<String> names = new ArrayList<>();
 	JButton button1 = new JButton("Add name");
 	JButton button2 = new JButton("View name");
 
@@ -36,8 +36,23 @@ public class _02_GuestBook implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		String a = "";
+		
 		if(e.getSource()==(button1)) {
+			
 		String addName=JOptionPane.showInputDialog("Add a Name");
+			names.add(addName);
+		}
+		
+		if(e.getSource()==(button2)) {
+			
+		for(int i=0; i< names.size(); i++) {
+			//int  o= i+=1; 
+			a = a + " Guest #" + (i+1)  + ": " + names.get(i)+ "\n" ;
+			System.out.println(names.get(i));
+		}
+			JOptionPane.showMessageDialog(null, a );
+		
 		}
 		
 	}
