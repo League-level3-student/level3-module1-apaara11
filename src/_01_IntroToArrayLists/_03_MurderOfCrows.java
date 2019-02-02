@@ -35,6 +35,7 @@ public class _03_MurderOfCrows {
     		for(int x= 0; x< theMurder.get(i).getStomachContents().size(); x++) {
     			if(theMurder.get(i).getStomachContents().get(x).equals("diamond")){
     				System.out.println(theMurder.get(i).getName());
+    				System.out.println(i + " Crow(s) had to die");
     			}
     		}
     	}
