@@ -3,12 +3,21 @@ package _01_IntroToArrayLists;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 
 //Copyright The League of Amazing Programmers, 2015
+
+
 
 public class _06_IPodShuffle{
 	public _06_IPodShuffle() {
 		// 1. Use the Song class the play the demo.mp3 file.
+		
+		Song s= new Song("demo.mp3");
+		
+				
+		
 				
 				
 		/**
@@ -23,5 +32,20 @@ public class _06_IPodShuffle{
 	
 	public static void main(String[] args) {
 		new _06_IPodShuffle();
-	}
+		Song girls = new Song("Girls.mp3");
+		Song umbrella = new Song("Umbrella.mp3");
+		Song without = new Song("Without.mp3");
+		
+		ArrayList<Song> playList = new ArrayList<Song>();
+		playList.add(girls);
+		playList.add(umbrella);
+		playList.add(without);
+		
+		
+		JOptionPane.showMessageDialog(null, "Surprise Me!");
+		
+		int index = new Random().nextInt(3);
+		playList.get(index).play();
+		
+		}
 }
