@@ -1,6 +1,7 @@
 package _03_IntroToStacks;
 
 import java.util.Random;
+
 import java.util.Stack;
 
 import javax.swing.JOptionPane;
@@ -8,15 +9,30 @@ import javax.swing.JOptionPane;
 public class _01_IntroToStack {
 	public static void main(String[] args) {
 		//1. Create a Stack of Doubles
+		Stack<Double> doubles= new Stack<Double>();
 		//   Don't forget to import the Stack class
 		
 		//2. Use a loop to push 100 random doubles between 0 and 100 to the Stack.
 		
-		//3. Ask the user to enter in two numbers between 0 and 100, inclusive. 
+		
+		for(int i=0; i<100; i++) {
+			double index = new Random().nextInt(101);
+			doubles.push(index);
+		}
+		//3. Ask the user to enter in two numbers between 0 and 100, inclusive.
+		String answer = JOptionPane.showInputDialog("Enter a number between 1 and 100");
+		String answer2 = JOptionPane.showInputDialog("Enter a number between 1 and 100");
+		double v = Double.parseDouble(answer);
+		double w = Double.parseDouble(answer2);
 		
 		//4. Pop all the elements off of the Stack. Every time a double is popped that is
 		//   between the two numbers entered by the user, print it to the screen.
-		
+		for(int i = 0; i<100; i++) {
+			Double x = doubles.pop();
+			if(x>v && x<w) {
+		System.out.println(x);
+			}
+		}
 		
 		//   EXAMPLE:
 		//   NUM 1: 65
