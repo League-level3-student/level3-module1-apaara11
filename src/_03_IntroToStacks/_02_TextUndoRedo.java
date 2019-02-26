@@ -8,6 +8,7 @@ import java.util.Stack;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import javax.xml.stream.events.Characters;
 
 public class _02_TextUndoRedo implements KeyListener {
@@ -23,7 +24,8 @@ public class _02_TextUndoRedo implements KeyListener {
 		frame.addKeyListener(this);
 		frame.add(panel);
 		panel.add(label);
-
+		//label.setText("label");
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
 	public static void main(String[] args) {
@@ -34,23 +36,27 @@ public class _02_TextUndoRedo implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-        char ch=e.getKeyChar();
-		chars.push(new Character(ch));
-		label.setText(label.getText()+ ch);
-		
-		if (e.getKeyCode()==0 && chars.size()>0) {
-			 System.out.println("text");
-			 chars.pop();
-			 label.setText(label.getText().substring(0, chars.size()));
-		}
-		System.out.println(e.getKeyChar());
+        
 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		
+		
+		if (e.getKeyCode()==KeyEvent.VK_BACK_SPACE && chars.size()>0) {
+			 System.out.println("text");
+			 chars.pop();
+			 label.setText(label.getText().substring(0, chars.size()));
+		}
+		else {
+			char ch=e.getKeyChar();
+			chars.push(new Character(ch));
+			label.setText(label.getText()+ ch);
+		}
+		 
+		System.out.println(e.getKeyChar());
 	}
 
 	@Override
