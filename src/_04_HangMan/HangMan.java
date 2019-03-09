@@ -11,19 +11,44 @@ Step 4: If they run out of lives, give them a game over message.
 Step 5: Don't end the program on game over. Ask the user if they would like to play again and run the game again with new 
 	    words if they choose yes.*/
 
-
-	    
-
 package _04_HangMan;
 
-import javax.swing.JOptionPane;
+import java.util.Stack;
 
-public class HangMan{
-	
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class HangMan {
+	Stack<String> string = new Stack<String>();
+	String utl;
+
 	public static void main(String[] args) {
+		HangMan hangman = new HangMan();
+		hangman.method();
+	}
+
+	public void method() {
+		String question = JOptionPane.showInputDialog("Enter a number between 0 and 266");
+		int answer = Integer.parseInt(question);
+
+		for (int i = 0; i < answer; i++) {
+			utl = Utilities.readRandomLineFromFile("src/ _04_HangMan/dictionary.txt");
+		}
+		string.push(utl);
+		string.contains(question);
+	}
+	public void step2() {
+		JFrame frame = new JFrame();
+		JPanel panel = new JPanel();
+		JLabel label = new JLabel();
 		
-		String question= JOptionPane.showInputDialog("Enter a number between 0 and 266");
-		
+		frame.setVisible(true);
+		frame.add(panel);
+		panel.add(label);
+		frame.pack();
 	}
 	
 }
+	
