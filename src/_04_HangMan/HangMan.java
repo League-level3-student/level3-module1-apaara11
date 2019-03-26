@@ -13,6 +13,10 @@ Step 5: Don't end the program on game over. Ask the user if they would like to p
 
 package _04_HangMan;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Stack;
 
 import javax.swing.JFrame;
@@ -20,13 +24,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class HangMan {
+public class HangMan implements KeyListener {
 	Stack<String> string = new Stack<String>();
-	String utl;
+	String utl= "";
+	String popped= "";
+	String blanks = "";
 
 	public static void main(String[] args) {
 		HangMan hangman = new HangMan();
 		hangman.method();
+		hangman.step2();
 	}
 
 	public void method() {
@@ -34,21 +41,54 @@ public class HangMan {
 		int answer = Integer.parseInt(question);
 
 		for (int i = 0; i < answer; i++) {
-			utl = Utilities.readRandomLineFromFile("src/ _04_HangMan/dictionary.txt");
+			utl = Utilities.readRandomLineFromFile("src/_04_HangMan/dictionary.txt");
 		}
 		string.push(utl);
 		string.contains(question);
+
 	}
+
 	public void step2() {
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
 		JLabel label = new JLabel();
 		
+		frame.addKeyListener(this);
+
 		frame.setVisible(true);
+		frame.setSize(800, 800);
 		frame.add(panel);
 		panel.add(label);
-		frame.pack();
+	//	frame.pack();
+
+		popped = string.pop();
+System.out.println(popped);
+		for (int i = 0; i < popped.length(); i++) {
+			blanks += " _ ";
+		}
+		
+		label.setText(blanks);;
 	}
-	
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < popped.length(); i++) {
+		if(popped.charAt(i)==(e.getKeyChar())) {
+			
+		}
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
-	
