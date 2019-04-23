@@ -30,6 +30,12 @@ public class HangMan implements KeyListener {
 	String popped= "";
 	String blanks = "";
 
+	JFrame frame = new JFrame();
+	JPanel panel = new JPanel();
+	JLabel label = new JLabel();
+	
+		
+	
 	public static void main(String[] args) {
 		HangMan hangman = new HangMan();
 		hangman.method();
@@ -42,17 +48,17 @@ public class HangMan implements KeyListener {
 
 		for (int i = 0; i < answer; i++) {
 			utl = Utilities.readRandomLineFromFile("src/_04_HangMan/dictionary.txt");
+			if(utl.equals("") || string.contains(utl)) {
+				i--;
+				continue;
+			}
+			string.push(utl);
 		}
-		string.push(utl);
-		string.contains(question);
+		
 
 	}
 
 	public void step2() {
-		JFrame frame = new JFrame();
-		JPanel panel = new JPanel();
-		JLabel label = new JLabel();
-		
 		frame.addKeyListener(this);
 
 		frame.setVisible(true);
@@ -64,10 +70,10 @@ public class HangMan implements KeyListener {
 		popped = string.pop();
 System.out.println(popped);
 		for (int i = 0; i < popped.length(); i++) {
-			blanks += " _ ";
+			blanks += "_";
 		}
 		
-		label.setText(blanks);;
+		
 	}
 
 	@Override
@@ -81,9 +87,19 @@ System.out.println(popped);
 		// TODO Auto-generated method stub
 		for (int i = 0; i < popped.length(); i++) {
 		if(popped.charAt(i)==(e.getKeyChar())) {
-			
+			label.setText(Torture(popped, blanks, e.getKeyChar()));
 		}
 		}
+		
+	}
+	public static String Torture(String correctWord, String blanks, char letter) {
+		StringBuilder builder = new StringBuilder(blanks);
+		for (int i = 0; i < correctWord.length(); i++) {
+			if(correctWord.charAt(i) == letter) {
+				builder.replace(i, i+1, letter+"");
+			}
+		}
+		return builder.toString();
 	}
 
 	@Override
