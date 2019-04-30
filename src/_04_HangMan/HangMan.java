@@ -29,6 +29,8 @@ public class HangMan implements KeyListener {
 	String utl= "";
 	String popped= "";
 	String blanks = "";
+	String other = "";
+	static int lives = 26;
 
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
@@ -87,7 +89,8 @@ System.out.println(popped);
 		// TODO Auto-generated method stub
 		for (int i = 0; i < popped.length(); i++) {
 		if(popped.charAt(i)==(e.getKeyChar())) {
-			label.setText(Torture(popped, blanks, e.getKeyChar()));
+			label.setText(Torture(popped, blanks,  e.getKeyChar())); 
+		System.out.println(blanks);
 		}
 		}
 		
@@ -97,6 +100,9 @@ System.out.println(popped);
 		for (int i = 0; i < correctWord.length(); i++) {
 			if(correctWord.charAt(i) == letter) {
 				builder.replace(i, i+1, letter+"");
+			}
+			else {
+				lives--;
 			}
 		}
 		return builder.toString();
