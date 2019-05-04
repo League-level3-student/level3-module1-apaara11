@@ -30,12 +30,12 @@ public class HangMan implements KeyListener {
 	String popped= "";
 	String blanks = "";
 	String other = "";
-	static int lives = 26;
+	int lives = 26;
 
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
 	JLabel label = new JLabel();
-	
+	JLabel label2 = new JLabel();
 		
 	
 	public static void main(String[] args) {
@@ -67,6 +67,7 @@ public class HangMan implements KeyListener {
 		frame.setSize(800, 800);
 		frame.add(panel);
 		panel.add(label);
+		panel.add(label2);
 	//	frame.pack();
 
 		popped = string.pop();
@@ -75,7 +76,8 @@ System.out.println(popped);
 			blanks += "_";
 		}
 		
-		
+		label.setText(blanks);
+		label2.setText(lives+ "");
 	}
 
 	@Override
@@ -87,23 +89,37 @@ System.out.println(popped);
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		for (int i = 0; i < popped.length(); i++) {
-		if(popped.charAt(i)==(e.getKeyChar())) {
+		
 			label.setText(Torture(popped, blanks,  e.getKeyChar())); 
 		System.out.println(blanks);
-		}
-		}
 		
 	}
-	public static String Torture(String correctWord, String blanks, char letter) {
-		StringBuilder builder = new StringBuilder(blanks);
+	public String Torture(String correctWord, String blanks, char letter) {
+		StringBuilder builder = new StringBuilder(label.getText());
+		boolean foundMatching = false;
+		System.out.println(correctWord +  " " + letter);
 		for (int i = 0; i < correctWord.length(); i++) {
 			if(correctWord.charAt(i) == letter) {
 				builder.replace(i, i+1, letter+"");
+				foundMatching = true;
 			}
-			else {
-				lives--;
-			}
+		}
+		System.out.println(foundMatching);
+		if(foundMatching ==false) {
+			lives--;
+			label2.setText(lives+"");
+			
+		}
+		if(lives==0) {
+			//String message = JOptionPane.showInputDialog("Would you like to play again");
+				JOptionPane.showMessageDialog(null, "GAME OVER");
+		String message = JOptionPane.showInputDialog("Would you like to play again");
+		if(message.equals("yes")) {
+		
+		HangMan hangman = new HangMan();
+		hangman.method();
+		hangman.step2();
+		}
 		}
 		return builder.toString();
 	}
